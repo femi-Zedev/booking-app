@@ -30,6 +30,11 @@ export default function Booking() {
   const [activeTab, setActiveTab] = useState<string | null>('flight');
   const smallScreen = useMediaQuery('(min-width: 640px)');
 
+  function handleTabChange(e:any) {
+    console.log(e)
+    setActiveTab(e)
+  }
+
   return (
 
 
@@ -53,19 +58,22 @@ export default function Booking() {
           </nav>
         </div>
         <div className="bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 mx-[10%] min-h-[128px] relative bottom-[-10vh] ">
-          <Tabs value={activeTab} onTabChange={setActiveTab}>
+          <Tabs value={activeTab} onTabChange={(e) => handleTabChange(e) }>
             <Tabs.List>
-              <Tabs.Tab value="hotel" icon={<IconBed color={activeTab === 'hotel' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'hotel' ? 'text-gray-800' : 'text-gray-400'}`}>Hotel</p> </Tabs.Tab>
-              <Tabs.Tab value="flight" icon={<IconPlaneDeparture color={activeTab === 'flight' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'flight' ? 'text-gray-800' : 'text-gray-400'}`}>Flight</p></Tabs.Tab>
-              <Tabs.Tab value="car" icon={<IconCar color={activeTab === 'car' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'car' ? 'text-gray-800' : 'text-gray-400'}`}>Car Rental</p> </Tabs.Tab>
+              <Tabs.Tab value='hotel' icon={<IconBed color={activeTab === 'hotel' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'hotel' ? 'text-gray-800' : 'text-gray-400'}`}>Hotel</p> </Tabs.Tab>
+              <Tabs.Tab value='flight' icon={<IconPlaneDeparture color={activeTab === 'flight' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'flight' ? 'text-gray-800' : 'text-gray-400'}`}>Flight</p></Tabs.Tab>
+              <Tabs.Tab value='car'  icon={<IconCar color={activeTab === 'car' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'car' ? 'text-gray-800' : 'text-gray-400'}`}>Car Rental</p> </Tabs.Tab>
             </Tabs.List>
 
-            <Tabs.Panel value="hotel" pt="xl">
-              Gallery tab content
+            <Tabs.Panel value='hotel' pt="xl">
+              <div>
+                Booking hotel
+              </div>
             </Tabs.Panel>
 
-            <Tabs.Panel className="lg:flex justify-between gap-x-6" value="flight" pt="xl">
-              <div className="grid grid-cols-12 gap-x-2 w-full">
+            <Tabs.Panel value='flight' pt="xl">
+              <div className="lg:flex justify-between gap-x-6">
+                    <div className="grid grid-cols-12 gap-x-2 w-full">
                 <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-300">
                   <p className="font-medium">Leaving from</p>
                   <p className="text-gray-400 text-xs lg:text-sm">Where are leaving from ?</p>
@@ -94,23 +102,27 @@ export default function Booking() {
                 Search
               </Button>
 
+              </div>
+          
             </Tabs.Panel>
 
-            <Tabs.Panel value="car" pt="xl">
-              Settings tab content
+            <Tabs.Panel value='car' pt="xl">
+              <div>
+                Car rental
+              </div>
             </Tabs.Panel>
           </Tabs>
         </div>
       </section>
       <section className=" ">
-        <div className="lg:flex mt-40 mx-[5%] lg:mx-[4.5rem] py-5 lg:py-12 px-5 lg:px-16 bg-blue-600 rounded-lg ">
+        <div className="lg:flex mt-40 mx-[5%] lg:mx-[9%] py-5 lg:py-12 px-5 lg:px-16 bg-blue-600 rounded-xl ">
           <div className="block text-white">
-            <h2 className="text-2xl lg:text-3xl font-semibold lg:font-bold">Get our pro offers</h2>
-            <p className="pt-3 text-sm lg:text-base mb-5 text-gray-300">Create a visual identity for your company, <br /> and an overall brand </p>
+            <h2 className="text-2xl lg:text-5xl font-semibold lg:font-bold">Get our pro offers</h2>
+            <p className="pt-3 text-sm lg:text-base lg:mt-5 mb-5 text-gray-300">Create a visual identity for your company, <br /> and an overall brand </p>
           </div>
 
-          <div className="flex lg:w-[50%] rounded-md mt-auto ml-auto bg-white py-2">
-            <p className="ml-5 my-auto text-sm lg:text-base text-gray-400 font-medium">Type your email here</p>
+          <div className="flex lg:w-[50%] rounded-md mt-auto ml-auto bg-white py-2 shadow-lg">
+            <input className="ml-5 my-auto text-sm lg:text-base text-gray-400 font-medium outline-none" placeholder="Type your email here" />
             <Button className="ml-auto mr-2 bg-gray-600" radius="md" color="gray" size="lg" variant="filled">
               Subscribe
             </Button>
