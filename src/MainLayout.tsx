@@ -7,6 +7,9 @@ import { IconBed, IconPlaneDeparture, IconCar } from '@tabler/icons';
 import FlightForm from './forms/FlightForm';
 import { Outlet } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
+import { IconChevronDown } from '@tabler/icons';
+import PassengerDropdown from './forms/components/PassengerDropdown';
+import Icon from './components/Icon';
 
 export default function MainLayout() {
 
@@ -32,21 +35,37 @@ export default function MainLayout() {
 
   useEffect(() => {
     console.log(location);
-    const str = location.pathname.slice(1)
-    'hotel car flight'.includes(str) ? setActiveTab(str) : ''
+    const str = location.pathname.slice(1);
+    str === 'hotel' || str === 'car' || str === 'flight' ? setActiveTab(str) : '';
   }, [location.pathname])
-  
+
 
   return (
     <>
-      <section className="w-full bgImg h-[40%]" style={{ backgroundImage: `url("/assets/hot-pool.webp")` }}>
+      <section className="w-full bgImg bg-no-repeat bg-cover " style={{ backgroundImage: `url("/assets/bg1.png")` }}>
         <NavSection />
         <div className="bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 mx-[10%] min-h-[128px] relative bottom-[-10vh] ">
-          <Tabs value={activeTab} onTabChange={setActiveTab}>
-            <Tabs.List>
-              <Tabs.Tab value='hotel' icon={<IconBed color={activeTab === 'hotel' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'hotel' ? 'text-gray-800' : 'text-gray-400'}`}>Hotel</p> </Tabs.Tab>
-              <Tabs.Tab value='flight' icon={<IconPlaneDeparture color={activeTab === 'flight' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'flight' ? 'text-gray-800' : 'text-gray-400'}`}>Flight</p></Tabs.Tab>
-              <Tabs.Tab value='car' icon={<IconCar color={activeTab === 'car' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold ${activeTab === 'car' ? 'text-gray-800' : 'text-gray-400'}`}>Car Rental</p> </Tabs.Tab>
+          <Tabs value={activeTab} onTabChange={setActiveTab} >
+            <Tabs.List className='w-[86%] border-b border-gray-200' >
+              <Tabs.Tab value='hotel' pb="lg" icon={<Icon icon='bed' color={activeTab === 'hotel' ? 'black' : 'gray'} height={16} />} px={0} mr="lg" > <p className={`font-bold text-xs ${activeTab === 'hotel' ? 'text-gray-800' : 'text-gray-500'}`}>Hotel</p> </Tabs.Tab>
+              <Tabs.Tab value='flight' pb="lg" icon={<IconPlaneDeparture color={activeTab === 'flight' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold text-xs ${activeTab === 'flight' ? 'text-gray-800' : 'text-gray-500'}`}>Flight</p></Tabs.Tab>
+              <Tabs.Tab value='car' pb="lg" icon={<IconCar color={activeTab === 'car' ? 'black' : 'gray'} size={24} />} px={0} mr="lg" > <p className={`font-bold text-xs ${activeTab === 'car' ? 'text-gray-800' : 'text-gray-500'}`}>Car Rental</p> </Tabs.Tab>
+              <div className="flex items-center ml-auto gap-x-4">
+                <span className='flex items-center gap-x-3'>
+                  <p className='text-gray-600 font-medium'>Round trip</p>
+                  <IconChevronDown color='gray' size={16} />
+                </span>
+
+                <PassengerDropdown
+                  buttonComponent={
+                    <span className='cursor-pointer flex items-center  gap-x-3'>
+                      <p className='text-gray-600 !font-medium'>1 passenger</p>
+                      <IconChevronDown color='gray' size={16} />
+                    </span>
+                  }
+                  items={[{ label: 'Adults', caption: 'Ages 13 or above' }, { label: 'Adults', caption: 'Ages 2-12' }, { label: 'Infants', caption: 'under 2' }]}
+                />
+              </div>
             </Tabs.List>
 
             <Tabs.Panel value='hotel' pt="xl">
@@ -61,6 +80,7 @@ export default function MainLayout() {
               {getTabForm('car')}
             </Tabs.Panel>
           </Tabs>
+
         </div>
       </section>
       <section className='container px-[10%]'>

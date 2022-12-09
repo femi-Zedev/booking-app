@@ -1,31 +1,50 @@
-import { Button } from "@mantine/core";
+import { Autocomplete, Button } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { useMediaQuery } from '@mantine/hooks';
+import CustomAutoComplete from "./components/CustomAutoComplete";
+import CustomDatePicker from "./components/CustomDatePicker";
 
 
 
 export default function FlightForm() {
   const smallScreen = useMediaQuery('(min-width: 640px)');
+
+  const form = useForm({
+    initialValues: {
+      leftFrom: '',
+      goingTo: '',
+      departureDate: new Date(),
+      returnDate: '',
+    },
+    validateInputOnChange: true
+
+    // validate: {
+    //   email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    // },
+  });
+  
+
   return (
     <div className="lg:flex justify-between gap-x-6">
       <div className="grid grid-cols-12 gap-x-2 w-full">
-        <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-300">
+        <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
           <p className="font-medium">Leaving from</p>
-          <p className="text-gray-400 text-xs lg:text-sm">Where are leaving from ?</p>
+          <CustomAutoComplete label="Leaving from" placeholder="Where are leaving from ?" {...form.getInputProps('leftFrom')} />
         </div>
-        <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-300">
+        <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
           <p className="font-medium">Going to</p>
-          <p className="text-gray-400 text-xs lg:text-sm">Where are going to ?</p>
+          <CustomAutoComplete label="Going to" placeholder="Where are going to ?" {...form.getInputProps('goingTo')} />
         </div>
-        <div className="col-span-6 lg:col-span-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-300">
-          <p className="font-medium">Dearture date</p>
-          <p className="text-gray-400 text-xs lg:text-sm">Add date</p>
+        <div className="col-span-6 lg:col-span-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
+          <p className="font-medium">Departure date</p>
+          <CustomDatePicker label="Departure date" placeholder="Add date"  />
         </div>
-        <div className="col-span-6 lg:col-span-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-300">
+        <div className="col-span-6 lg:col-span-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
           <p className="font-medium">Return date</p>
-          <p className="text-gray-400 text-xs lg:text-sm">Add date</p>
+          <CustomDatePicker label="Return date" minDate={form.values.departureDate} placeholder="Add date"  />
         </div>
 
-        <div className="col-span-12 lg:hidden w-full my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-300">
+        <div className="col-span-12 lg:hidden w-full my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
           <p className="font-medium">Passenger</p>
           <p className="text-gray-400 text-xs lg:text-sm">Add guest</p>
         </div>
