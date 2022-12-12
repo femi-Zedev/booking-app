@@ -2,7 +2,13 @@ import { ReactNode, useState } from "react";
 import { ActionIcon, Menu } from '@mantine/core';
 import { IconMinus, IconPlus } from '@tabler/icons'
 
-export default function PassengerDropdown({ buttonComponent, items }: { buttonComponent: ReactNode, items: Array<{ label: string, caption: string }> }) {
+interface PassengerDropdownProps {
+  buttonComponent: ReactNode;
+  items: Array<{ label: string, caption: string, count: number }>;
+  onStateChange: (arg: any) => void;
+}
+
+export default function PassengerDropdown({ buttonComponent, items, onStateChange }: PassengerDropdownProps) {
 
   const [itemCount, setItemCount] = useState(Array(items.length).fill(0))
 
@@ -12,17 +18,28 @@ export default function PassengerDropdown({ buttonComponent, items }: { buttonCo
   function handleMinus(i: number) {
     const copy = [...itemCount]
     copy[i] = copy[i]-1
+    items[i].count = copy[i]
     setItemCount(copy)
   }
 
   function handlePlus(i: number) {
     const copy = [...itemCount]
     copy[i] = copy[i]+1
+    items[i].count = copy[i]
     setItemCount(copy)
   }
 
+  function handleClose() {
+    let data = items.reduce((item, value) => ({...item, [value.label]: value.count}), {} )
+    const totalCount: number =  items.reduce( (accumulator, currentValue) => {
+      return accumulator + currentValue.count;
+    },0);
+    const passengerData = {...data, totalCount: totalCount }
+    onStateChange(passengerData)
+  }
+
   return (
-    <Menu width={400} shadow="md" radius="lg">
+    <Menu onClose={handleClose} width={400} shadow="md" radius="lg">
       <Menu.Target>
         {buttonComponent}
       </Menu.Target>

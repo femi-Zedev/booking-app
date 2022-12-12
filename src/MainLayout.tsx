@@ -66,7 +66,8 @@ export default function MainLayout() {
                           <IconChevronDown color='gray' size={16} />
                         </span>
                       }
-                      items={[{ label: 'Adults', caption: 'Ages 13 or above' }, { label: 'Adults', caption: 'Ages 2-12' }, { label: 'Infants', caption: 'under 2' }]}
+                      items={[{ label: 'Adults', caption: 'Ages 13 or above', count: 0 }, { label: 'Children', caption: 'Ages 2-12', count: 0 }, { label: 'Infants', caption: 'under 2', count: 0 }]}
+                      onStateChange={ (arg:any) => console.log(arg)}
                     />
                   </div>
                 </Tabs.List>
