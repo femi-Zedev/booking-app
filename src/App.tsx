@@ -6,6 +6,7 @@ import Flight from "./pages/Flight";
 import Hotel from "./pages/Hotel";
 import Car from "./pages/Car";
 import Checkout from "./pages/Checkout";
+import Result from "./pages/Result";
 
 export default function App() {
 
@@ -36,7 +37,11 @@ export default function App() {
     {
       path: "/checkout",
       element: <Checkout/>
-    }
+    },
+    {
+      path: "/result",
+      element: <Result />,
+    },
   ]);
 
   return (
