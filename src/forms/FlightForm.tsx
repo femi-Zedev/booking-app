@@ -11,6 +11,9 @@ export default function FlightForm() {
   const navigate = useNavigate();
   const smallScreen = useMediaQuery('(min-width: 640px)');
 
+
+  const options = ['Dubai', 'Doha', 'Darling Harbour', 'Dhaka', 'Dubai International Airport']
+
   const form = useForm({
     initialValues: {
       leftFrom: '',
@@ -38,11 +41,11 @@ export default function FlightForm() {
         <div className="grid grid-cols-12 gap-x-2 w-full">
           <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
             <p className="font-medium">Leaving from</p>
-            <CustomAutoComplete label="Leaving from" placeholder="Where are leaving from ?" {...form.getInputProps('leftFrom')} />
+            <CustomAutoComplete options={options} label="Leaving from" placeholder="Where are leaving from ?" {...form.getInputProps('leftFrom')} />
           </div>
           <div className="col-span-12 lg:col-span-3 my-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
             <p className="font-medium">Going to</p>
-            <CustomAutoComplete label="Going to" placeholder="Where are going to ?" {...form.getInputProps('goingTo')} />
+            <CustomAutoComplete options={options} label="Going to" placeholder="Where are going to ?" {...form.getInputProps('goingTo')} />
           </div>
           <div className="col-span-6 lg:col-span-3 lg:my-0 py-1 lg:py-2 pl-5 bg-blue-50 rounded-md border border-gray-200">
             <p className="font-medium">Departure date</p>

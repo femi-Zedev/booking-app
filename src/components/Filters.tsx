@@ -55,12 +55,15 @@ const Filters = () => {
                         <Slider
                             className="w-full"
                             label={(value) => `$${value}`}
+                            marks={[
+                                { value: 50, label: '50$' },
+                                { value: 500, label: '500$' },
+                              ]}
                             value={value}
                             onChange={setValue}
                             step={1}
                             min={0}
                             max={500}
-                            labelAlwaysOn
                         />
 
                         <Input

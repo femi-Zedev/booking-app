@@ -10,11 +10,13 @@ import { useLocation } from "react-router-dom";
 import { IconChevronDown } from '@tabler/icons';
 import PassengerDropdown from './forms/components/PassengerDropdown';
 import Icon from './components/Icon';
+import CustomSelect from './forms/components/CustomSelect';
 
 export default function MainLayout() {
 
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<string | null>('flight');
+  const [totalPassenger, setTotalPassenger] = useState(1)
 
   function getTabForm(tab: string) {
     switch (tab) {
@@ -54,20 +56,20 @@ export default function MainLayout() {
                   <Tabs.Tab value='flight' pb="lg" icon={<Icon icon='plane' color={activeTab === 'flight' ? 'black' : 'gray'} height={22} />} px={0} mr="lg" > <p className={`font-bold text-xs ${activeTab === 'flight' ? 'text-gray-800' : 'text-gray-500'}`}>Flight</p></Tabs.Tab>
                   <Tabs.Tab value='car' pb="lg" icon={<Icon icon='taxi' color={activeTab === 'car' ? 'black' : 'gray'} height={18} />} px={0} mr="lg" > <p className={`font-bold text-xs ${activeTab === 'car' ? 'text-gray-800' : 'text-gray-500'}`}>Car Rental</p> </Tabs.Tab>
                   <div className="hidden lg:flex items-center ml-auto gap-x-4">
-                    <span className='flex items-center gap-x-3'>
-                      <p className='text-gray-600 font-medium'>Round trip</p>
-                      <IconChevronDown color='gray' size={16} />
-                    </span>
+                    <CustomSelect
+                      options={['One-way', 'Round-trip', 'Round-trips']}
+                      defaultValue="Round-trip"
+                      style={{ input: { fontSize: '16px', fontWeight: 600, color: '#605858', width: '118px' } }} />
 
                     <PassengerDropdown
                       buttonComponent={
                         <span className='cursor-pointer flex items-center  gap-x-3'>
-                          <p className='text-gray-600 !font-medium'>1 passenger</p>
-                          <IconChevronDown color='gray' size={16} />
+                          <p className='text-gray-600 !font-medium'>{totalPassenger} passenger(s)</p>
+                          <IconChevronDown className='mt-1' color='gray' size={16} />
                         </span>
                       }
                       items={[{ label: 'Adults', caption: 'Ages 13 or above', count: 0 }, { label: 'Children', caption: 'Ages 2-12', count: 0 }, { label: 'Infants', caption: 'under 2', count: 0 }]}
-                      onStateChange={ (arg:any) => console.log(arg)}
+                      onStateChange={(arg: any) => setTotalPassenger(arg.totalCount)}
                     />
                   </div>
                 </Tabs.List>

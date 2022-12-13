@@ -1,14 +1,19 @@
 import Filters from '@/components/Filters';
 import FlightCard from '@/components/FlightCard';
+import Footer from '@/components/Footer';
 import NavSection from '@/components/NavSection'
 import SubscribeSection from '@/components/SubscribeSection'
 import PassengerDropdown from '@/forms/components/PassengerDropdown';
 import FlightForm from '@/forms/FlightForm';
-import { Anchor, Breadcrumbs, Container, Grid, Space } from '@mantine/core';
+import { Anchor, Breadcrumbs, Button, Container, Grid, Space } from '@mantine/core';
 import { IconChevronDown, IconChevronRight } from '@tabler/icons';
 import { useState } from 'react';
+import { useMediaQuery } from '@mantine/hooks';
+import CustomSelect from '@/forms/components/CustomSelect';
 
 const Result = () => {
+    const smallScreen = useMediaQuery('(min-width: 640px)');
+    const [totalPassenger, setTotalPassenger] = useState(1)
     const [flights, setFlights] = useState<any>([
         {
             id: 1,
@@ -286,28 +291,30 @@ const Result = () => {
                 <Space h={150} />
             </div>
 
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 w-full max-w-7xl mx-auto">
+            <div className="mx-[6%] lg:mx-[9%] bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20  max-w-7xl">
                 <div className="hidden lg:flex items-center ml-auto gap-x-4 pb-4">
-                    <span className='flex items-center gap-x-3'>
-                        <p className='text-gray-600 font-medium'>Round trip</p>
-                        <IconChevronDown color='gray' size={16} />
-                    </span>
+                    <CustomSelect
+                        options={['One-way', 'Round-trip', 'Round-trips']}
+                        defaultValue="Round-trip"
+                        style={{ input: { fontSize: '16px', fontWeight: 600, color: '#605858', width: '118px' } }} 
+                        />
 
                     <PassengerDropdown
                         buttonComponent={
                             <span className='cursor-pointer flex items-center  gap-x-3'>
-                                <p className='text-gray-600 !font-medium'>1 passenger</p>
+                                <p className='text-gray-600 !font-medium'>{totalPassenger} passenger(s)</p>
                                 <IconChevronDown color='gray' size={16} />
                             </span>
                         }
-                        items={[{ label: 'Adults', caption: 'Ages 13 or above' }, { label: 'Adults', caption: 'Ages 2-12' }, { label: 'Infants', caption: 'under 2' }]}
+                        onStateChange={(arg: any) => setTotalPassenger(arg.totalCount)}
+                        items={[{ label: 'Adults', caption: 'Ages 13 or above', count: 0 }, { label: 'Adults', caption: 'Ages 2-12', count: 0 }, { label: 'Infants', caption: 'under 2', count: 0 }]}
                     />
                 </div>
 
                 <FlightForm />
             </div>
 
-            <Container size={1280} px="xs">
+            <Container size={1280} className='px-[5%] lg:px-[9%] '>
                 <Filters />
                 <Grid gutter={10} className="mt-16">
                     {flights.map((flight: any, index: any) => (
@@ -316,9 +323,18 @@ const Result = () => {
                         </Grid.Col>
                     ))}
                 </Grid>
+                <div className="flex justify-center">
+                    <Button className='mx-auto mt-5 lg:mt-24' variant="outline" color="gray" radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} >
+                        View all
+                    </Button>
+                </div>
+
             </Container>
 
+
+
             <SubscribeSection />
+            <Footer />
         </main>
     )
 }
