@@ -286,12 +286,12 @@ const Result = () => {
             <div className="bg-lighter">
                 <NavSection withIconImage={false} />
 
-                <Breadcrumbs className="flex px-3 md:px-12 mx-auto py-5 text-sm ml-6 sm:ml-8" separator={<IconChevronRight />}>{items}</Breadcrumbs>
+                <Breadcrumbs className="hidden lg:flex px-3 md:px-12 mx-auto py-5 text-sm ml-6 sm:ml-8" separator={<IconChevronRight />}>{items}</Breadcrumbs>
 
                 <Space h={150} />
             </div>
 
-            <div className="mx-[6%] lg:mx-[9%] bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20  max-w-7xl">
+            <div className="mx-[5%] bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20  max-w-7xl">
                 <div className="hidden lg:flex items-center ml-auto gap-x-4 pb-4">
                     <CustomSelect
                         options={['One-way', 'Round-trip', 'Round-trips']}
@@ -310,7 +310,7 @@ const Result = () => {
                         items={[{ label: 'Adults', caption: 'Ages 13 or above', count: 0 }, { label: 'Adults', caption: 'Ages 2-12', count: 0 }, { label: 'Infants', caption: 'under 2', count: 0 }]}
                     />
                 </div>
-
+                
                 <FlightForm />
             </div>
 

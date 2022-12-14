@@ -3,7 +3,40 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html, #root {
+
+@font-face {
+    font-family: 'Segoe UI Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SegoeUIRegular'), url('./fonts/SegoeUI UI.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'Segoe UI Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SegoeUIItalic'), url('./fonts/SegoeUIUIItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'Segoe UI Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SegoeUIBold'), url('./fonts/SegoeUIUIBold.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'Segoe UI Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SegoeUIBoldItalic'), url('./fonts/SegoeUIUIBoldItalic.woff') format('woff');
+    }
+
+  body, html, #root {
+    //font-family: Segoe UI Regular;
     width: 100%;
     min-height: 100vh;
     background: #fcfcfc;
@@ -32,6 +65,16 @@ body, html, #root {
   width: -moz-available;          /* WebKit-based browsers will ignore this. */
   width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
   width: fill-available;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #c4c6c8;
+  border-radius: 14px;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
 }
 
 

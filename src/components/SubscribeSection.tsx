@@ -15,9 +15,9 @@ export default function SubscribeSection() {
           <p className="pt-3 text-sm lg:text-base lg:mt-5 mb-5 text-gray-300">Create a visual identity for your company, <br /> and an overall brand </p>
         </div>
 
-        <div className="flex lg:w-[50%] rounded-md mt-auto ml-auto bg-white py-2 shadow-lg">
-          <input className="ml-5 my-auto text-sm lg:text-base text-gray-400 font-medium outline-none" placeholder="Type your email here" />
-          <Button className="ml-auto mr-2 bg-gray-600" radius="md" color="gray" size="lg" variant="filled">
+        <div className="flex flex-col sm:flex-row lg:w-[50%] rounded-md mt-auto ml-auto sm:bg-white py-2 sm:shadow-lg">
+          <input className="ml-5 my-auto text-sm lg:text-base mb-5 sm:mb-auto p-4 sm:p-0 rounded text-gray-400 font-medium outline-none " placeholder="Type your email here" />
+          <Button className="mx-auto sm:ml-auto sm:mr-2 bg-gray-600" radius="md" color="gray" size="lg" variant="filled">
             Subscribe
           </Button>
         </div>

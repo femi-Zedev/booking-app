@@ -1,4 +1,10 @@
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import "./fonts/style.css";
+import "./fonts/SegoeUI.woff";
+import "./fonts/SegoeUIBold.woff";
+import "./fonts/SegoeUIBoldItalic.woff";
+import "./fonts/SegoeUIItalic.woff";
+
 import { MantineProvider } from "@mantine/core";
 import { theme } from "./theme";
 import MainLayout from "./MainLayout";
@@ -7,6 +13,7 @@ import Hotel from "./pages/Hotel";
 import Car from "./pages/Car";
 import Checkout from "./pages/Checkout";
 import Result from "./pages/Result";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 
 export default function App() {
 
@@ -37,6 +44,10 @@ export default function App() {
     {
       path: "/checkout",
       element: <Checkout/>
+    },
+    {
+      path: "/checkout-success",
+      element: <CheckoutSuccess/>
     },
     {
       path: "/result",
