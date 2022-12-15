@@ -1,7 +1,9 @@
 import { Button, Card, Image, Space } from "@mantine/core"
 import { IconArrowRight } from "@tabler/icons"
+import { useNavigate } from "react-router-dom";
 
 const FlightCard = ({ data }: any) => {
+    const navigate = useNavigate();
     const renderDate = (date: Date) => {
         // Thu, 12 March 2021
         return Intl.DateTimeFormat('en-US', { month: 'short', weekday: 'short', day: 'numeric' }).format(new Date(date))
@@ -34,7 +36,8 @@ const FlightCard = ({ data }: any) => {
                     <div className="flex flex-col justify-center items-center">
                         <p className="text-xl">${data.price}</p>
                         <p className="text-lg font-medium">
-                            <Button className="bg-blue-500 w-full lg:w-fit" color="blue" variant="filled" size="xs" role="button" radius={'xl'}>
+                            <Button className="bg-blue-500 w-full lg:w-fit" color="blue" variant="filled" size="xs" role="button" radius={'xl'}
+                                onClick={() => navigate('/flight-details/' + data.id)}>
                                 Book Now
                             </Button>
                         </p>

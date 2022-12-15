@@ -14,6 +14,7 @@ import Car from "./pages/Car";
 import Checkout from "./pages/Checkout";
 import Result from "./pages/Result";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import FlightDetail from "./pages/FlightDetail";
 
 export default function App() {
 
@@ -52,6 +53,10 @@ export default function App() {
     {
       path: "/result",
       element: <Result />,
+    },
+    {
+      path: "/flight-details/:id",
+      element: <FlightDetail />,
     },
   ]);
 
