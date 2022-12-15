@@ -242,7 +242,7 @@ const FlightDetail = () => {
         switch (input.type) {
             case 'text':
             case 'password':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 md:${input.semiWidth && 'w-1/2'}`}>
+                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Input.Wrapper
                         key={index}
                         className="flex w-full flex-col my-4 first:ml-0 ml-4"
@@ -267,7 +267,7 @@ const FlightDetail = () => {
                     </Input.Wrapper>
                 </div>;
             case 'select':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 md:${input.semiWidth && 'w-1/2'}`}>
+                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Select
                         label={input.label}
                         name={input.name}
@@ -286,7 +286,7 @@ const FlightDetail = () => {
                         } />
                 </div>;
             case 'date':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 md:${input.semiWidth && 'w-1/2'}`}>
+                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <DatePicker
                         label={input.label}
                         aria-label={input.label}

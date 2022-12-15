@@ -296,8 +296,8 @@ const Result = () => {
                     <CustomSelect
                         options={['One-way', 'Round-trip', 'Round-trips']}
                         defaultValue="Round-trip"
-                        style={{ input: { fontSize: '16px', fontWeight: 600, color: '#605858', width: '118px' } }} 
-                        />
+                        style={{ input: { fontSize: '16px', fontWeight: 600, color: '#605858', width: '118px' } }}
+                    />
 
                     <PassengerDropdown
                         buttonComponent={
@@ -310,7 +310,7 @@ const Result = () => {
                         items={[{ label: 'Adults', caption: 'Ages 13 or above', count: 0 }, { label: 'Adults', caption: 'Ages 2-12', count: 0 }, { label: 'Infants', caption: 'under 2', count: 0 }]}
                     />
                 </div>
-                
+
                 <FlightForm />
             </div>
 
