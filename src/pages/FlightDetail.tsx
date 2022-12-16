@@ -8,7 +8,7 @@ import { IconChevronDown, IconChevronRight, IconEdit } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
 import CustomSelect from '@/forms/components/CustomSelect';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Countries from '@/assets/countries.json';
 import { useForm } from '@mantine/form';
 import EditIcon from '@/components/Icons/EditIcon';
@@ -17,6 +17,8 @@ import { DatePicker } from '@mantine/dates';
 import FlightListItem from '@/components/FlightListItem';
 
 const FlightDetail = () => {
+    const navigate = useNavigate();
+    const { id } = useParams();
     const smallScreen = useMediaQuery('(min-width: 640px)');
     const [totalPassenger, setTotalPassenger] = useState(1);
     const previousRouteUrl = useLocation().state?.from || '/';
@@ -506,7 +508,7 @@ const FlightDetail = () => {
                         </div>
                     </div>
                     <div className="flex justify-start mt-5 lg:mt-24">
-                        <Button className="bg-blue-500 w-full lg:w-fit" color="blue" radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} >
+                        <Button className="bg-blue-500 w-full lg:w-fit" color="blue" radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} onClick={() => navigate(`/flight-place/${id}`)}>
                             Continue
                         </Button>
                     </div>

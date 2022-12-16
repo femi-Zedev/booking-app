@@ -15,6 +15,7 @@ import Checkout from "./pages/Checkout";
 import Result from "./pages/Result";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import FlightDetail from "./pages/FlightDetail";
+import FlightPlace from "./pages/FlightPlace";
 
 export default function App() {
 
@@ -57,6 +58,10 @@ export default function App() {
     {
       path: "/flight-details/:id",
       element: <FlightDetail />,
+    },
+    {
+      path: "/flight-place/:id",
+      element: <FlightPlace />,
     },
   ]);
 
