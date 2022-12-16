@@ -4,14 +4,14 @@ import SubscribeSection from '@/components/SubscribeSection'
 import PassengerDropdown from '@/forms/components/PassengerDropdown';
 import FlightForm from '@/forms/FlightForm';
 import { Anchor, Breadcrumbs, Button, Card, CardSection, Container, Divider, Grid, Input, Select, Space, Text, Image, Avatar } from '@mantine/core';
-import { IconChevronDown, IconChevronRight } from '@tabler/icons';
+import { IconChevronDown, IconChevronRight, IconInfoCircle } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
 import CustomSelect from '@/forms/components/CustomSelect';
 import { useLocation } from 'react-router-dom';
 import { useForm } from '@mantine/form';
-import PlusIcon from '@/components/Icons/PlusIcon';
-import { DatePicker } from '@mantine/dates';
+import { IconPlaneDeparture } from '@tabler/icons';
+import { IconPlaneArrival } from '@tabler/icons';
 import FlightListItem from '@/components/FlightListItem';
 
 const FlightDetail = () => {
@@ -76,6 +76,29 @@ const FlightDetail = () => {
         console.log("🚀 ~ file: FlightDetail.tsx:145 ~ handleForm ~ values", values)
     };
 
+    function BagPicker({ selectedOption}: { selectedOption: string}) {
+        return (
+            <div className="flex items-center justify-between my-5 bg-white py-4 px-4 shadow-lg shadow-gray-200 border border-stone-100 rounded">
+                <div className="flex items-center">
+                    <span className='flex items-center justify-center bg-[#073590] text-[#073590]  w-10 h-10 bg-opacity-30 rounded-full text-xl font-bold' >ST</span>
+                    <p className='hidden lg:block text-sm text-gray-700 font-semibold ml-3'>Stark Tony</p>
+                </div>
+                <div className='text-center'>
+                    <p className='text-lg font-bold text-[#073590]'>{selectedOption}</p>
+                    <p className='text-sm text-gray-400 font-semibold'>Add additional bagage</p>
+                </div>
+                <div className='rounded border-2 border-solid border-blue-800 border-opacity-20 p-1'>
+                    <div className='h-8 w-8 rounded bg-blue-800 bg-opacity-20 mr-8'></div>
+                </div>
+                <div className='hidden lg:flex items-center '>
+                    <IconInfoCircle className="text-[#073590] text-opacity-50" size={24} />  <p className=' ml-1 text-xs mb-[3px] text-[#073590] font-semibold text-opacity-50'>Learn more about bags options</p>
+                </div>
+
+                <IconChevronDown className="hidden lg:block text-[#073590] text-opacity-60" size={32} />
+            </div>
+        )
+    }
+
     return (
         <main className="bg-light">
             <div className="bg-lighter">
@@ -86,7 +109,7 @@ const FlightDetail = () => {
                 <Space h={150} />
             </div>
 
-            <div className="mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
+            <div className="mx-[5%] lg:mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
                 <div className="hidden lg:flex items-center ml-auto gap-x-4 pb-4">
                     <CustomSelect
                         options={['One-way', 'Round-trip', 'Round-trips']}
@@ -112,36 +135,48 @@ const FlightDetail = () => {
             <div className="px-[5%] lg:px-[9%] mt-24">
 
                 <form onSubmit={useform.onSubmit((values) => handleForm(values))}>
-                    <div className="grid grid-flow-row-dense grids-cols-1 lg:grids-rows-4 lg:grid-cols-4 gap-12">
-                        <div className="col-span-3 space-y-16">
-                            <Text weight={700} size="lg" mt="md" className="text-blue-800">What bags are you taking on board?</Text>
+                    <div className="grid grid-cols-12 gap-12">
+                        <div className="col-span-12 lg:col-span-8">
+                            <Text weight={700} className="text-2xl text-blue-800" mt="md" >What bags are you taking on board?</Text>
 
-                            <CardSection className="flex">
+                            <div className="flex items-end gap-x-3 mt-2">
                                 <div>
-                                    <Text weight={700} size="sm" mt="md" className="text-[#073590]">FROM</Text>
-                                    <Text weight={700} size="xl" mt="md" className="text-[#073590]">DAC</Text>
+                                    <p className="text-xs  text-[#073590] font-bold">FROM</p>
+                                    <p className="text-3xl  text-[#073590] font-bold">DAC</p>
                                 </div>
-                                <div>
-                                    <Text weight={700} size="sm" mt="md" className="text-[#073590] text-opacity-50">TO</Text>
-                                    <Text weight={700} size="xl" mt="md" className="text-[#073590] text-opacity-50">DXB</Text>
+                                <IconPlaneDeparture className="text-[#073590] stroke-1" size={32} />
+                                <div className=''>
+                                    <p className="text-xs  text-[#073590] font-bold text-opacity-50">TO</p>
+                                    <p className="text-3xl  text-[#073590] font-bold text-opacity-50">DXB</p>
                                 </div>
-                            </CardSection>
+                            </div>
 
-                            <Card radius="sm" className="flex w-full space-x-2 items-center">
+                            <BagPicker selectedOption='Cabin Bag' />
+                            <BagPicker selectedOption='Cabin-in Bag' />
+
+                            <div className="flex items-end gap-x-3 mt-2">
                                 <div>
-                                    <Avatar color="blue" radius="xl">ST</Avatar>
-                                    <Text size="md">Stark Tony</Text>
+                                    <p className="text-xs  text-[#073590] font-bold">FROM</p>
+                                    <p className="text-3xl  text-[#073590] font-bold">DAC</p>
                                 </div>
-                                <div>
-                                    <Text size="md" className="text-[#073590] text-opacity-50">Cabin Bag</Text>
-                                    <Text size="md">Add additional baggage</Text>
+                                <IconPlaneArrival className="text-[#073590] stroke-1" size={32} />
+                                <div className=''>
+                                    <p className="text-xs  text-[#073590] font-bold text-opacity-50">TO</p>
+                                    <p className="text-3xl  text-[#073590] font-bold text-opacity-50">DXB</p>
                                 </div>
-                            </Card>
+                            </div>
+
+                            <BagPicker selectedOption='Cabin Bag' />
+                            <BagPicker selectedOption='Cabin-in Bag' />
+
+
                         </div>
 
-                        <div className="lg:col-span-1 col-span-3">
-                            <Card withBorder radius="lg" p={0}>
-                                <CardSection p={16}>
+                        <div className="col-span-12 lg:col-span-4 relative">
+                            <img className='hidden lg:block absolute w-[400px] left-[30%] top-[-20%] z-10' src="/assets/bagage2.png" alt="" />
+
+                            <Card withBorder radius="lg" className='lg:mt-28'>
+                                <CardSection className='mx-10 my-6'>
                                     <Text weight={500} size="lg" mt="md">Price Details</Text>
 
                                     <div className="flex justify-between items-center">
@@ -169,7 +204,7 @@ const FlightDetail = () => {
 
                                 <Divider />
 
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <div className="flex">
                                         <Text weight={500} size="lg" mt="md">Passengers</Text>
                                     </div>
@@ -181,7 +216,7 @@ const FlightDetail = () => {
 
                                 <Divider />
 
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <div className="flex">
                                         <Text weight={500} size="lg" mt="md">Check-in baggage</Text>
                                     </div>
@@ -199,14 +234,14 @@ const FlightDetail = () => {
 
                                 <Divider />
 
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <Text weight={500} size="lg" mt="md">Services</Text>
                                     <div className="flex justify-between items-center">
-                                        <Text weight={400} size="md" mt="md" color="gray">No extra services selected</Text>
+                                        <Text weight={400} size="md" my="md" color="gray">No extra services selected</Text>
                                     </div>
                                 </CardSection>
 
-                            </Card>
+                                </Card>
                         </div>
                     </div>
                     <div className="flex justify-start mt-5 lg:mt-24">
