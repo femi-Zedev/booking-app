@@ -105,7 +105,7 @@ const FlightDetail = () => {
                         semiWidth: true,
                     },
                     {
-                        label: 'Birth Day',
+                        label: 'Birthday',
                         name: 'birthday',
                         type: 'date',
                         minDate: new Date(),
@@ -244,7 +244,7 @@ const FlightDetail = () => {
         switch (input.type) {
             case 'text':
             case 'password':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
+                return <div className={`flex w-full flex-col first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Input.Wrapper
                         key={index}
                         className="flex w-full flex-col my-4 first:ml-0 ml-4"
@@ -255,7 +255,7 @@ const FlightDetail = () => {
                                 lineHeight: '21px',
                                 color: '#84878B',
                                 fontSize: '16px',
-                                marginBottom: '1rem'
+                                marginBottom: '12px'
                             },
                         })
                         }
@@ -264,46 +264,54 @@ const FlightDetail = () => {
                             name={input.name}
                             type={input.type}
                             placeholder={input.placeholder}
-                            size="sm"
+                            size="md"
+                            radius="md"
                         />
                     </Input.Wrapper>
                 </div>;
             case 'select':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
+                return <div className={`flex w-full flex-col first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Select
+                        size="md"
+                        radius="md"
                         label={input.label}
                         name={input.name}
+                        className="my-4"
                         placeholder={input.placeholder}
                         data={input.optionsList}
-                        size="sm"
                         styles={(theme) => ({
                             label: {
                                 fontWeight: 700,
                                 lineHeight: '21px',
                                 color: '#84878B',
                                 fontSize: '16px',
-                                marginBottom: '1rem'
+                                marginBottom: '12px'
                             },
                         })
                         } />
                 </div>;
             case 'date':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
+                return <div className={`flex w-full flex-col first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <DatePicker
+                        radius="md"
+                        size='md'
                         label={input.label}
                         aria-label={input.label}
-                        className='mt-1'
                         name={input.name}
+                        className="my-4"
                         placeholder={input.placeholder}
                         minDate={input.minDate}
                         maxDate={input.maxDate}
                         styles={(theme) => ({
+                            input: {
+                                marginTop: '0px'
+                            },
                             label: {
                                 fontWeight: 700,
                                 lineHeight: '21px',
                                 color: '#84878B',
                                 fontSize: '16px',
-                                marginBottom: '1rem'
+                                marginBottom: '12px'
                             },
                         })
                         }
@@ -340,7 +348,7 @@ const FlightDetail = () => {
                 <Space h={150} />
             </div>
 
-            <div className="mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
+            <div className="mx-[5%] lg:mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
                 <div className="hidden lg:flex items-center ml-auto gap-x-4 pb-4">
                     <CustomSelect
                         options={['One-way', 'Round-trip', 'Round-trips']}
@@ -366,21 +374,21 @@ const FlightDetail = () => {
             <div className="px-[5%] lg:px-[9%] mt-24">
 
                 <form onSubmit={useform.onSubmit((values) => handleForm(values))}>
-                    <div className="grid grid-flow-row-dense grids-cols-1 lg:grids-rows-4 lg:grid-cols-4 gap-12">
-                        <div className="col-span-3 space-y-16">
-                            <Card withBorder radius="lg" className="w-full space-y-6">
+                    <div className="grid grid-cols-12 gap-12">
+                        <div className="col-span-12 lg:col-span-8 space-y-16">
+                            <Card withBorder radius="lg" className="w-full space-y-3 space-x-2">
                                 {flight.map((flightData: any, index: number) => (
                                     <FlightListItem data={flightData} changeFlight={index <= 0} />
                                 ))}
                             </Card>
 
                             {form.passengers.map((passenger, index) => (
-                                <Card withBorder radius="lg" className="w-full space-y-6">
-                                    <CardSection className="flex justify-between items-center" p={16}>
-                                        <Text weight={500} size="xl" mt="md">Passenger Details</Text>
+                                <Card withBorder radius="lg" className="w-full space-y-3 space-x-2">
+                                    <CardSection className="flex justify-between items-center">
+                                        <Text weight={500} className="text-2xl ml-10" mt="lg" >Passenger Details</Text>
                                     </CardSection>
 
-                                    <CardSection p={16}>
+                                    <CardSection px={16} py={4} >
                                         <div className="flex flex-wrap justify-between items-center">
                                             {passenger.inputs.map((input, index) => (
                                                 fillInput(input, index)
@@ -392,13 +400,13 @@ const FlightDetail = () => {
 
                             <div className="flex flex-wrap">
                                 {form.passengers.map((input, index) => (
-                                    <Card withBorder radius="lg" className="w-fit space-y-6 mr-4 px-8">
+                                    <Card withBorder radius="lg" className="w-fit space-y-3 space-x-2 mr-4 px-8">
                                         {`${index < 10 ? '0' : ''}${index + 1}`}.
                                         <br />
                                         Adulte
                                     </Card>
                                 ))}
-                                <Card withBorder radius="lg" className="w-fit space-y-6 pr-16">
+                                <Card withBorder radius="lg" className="w-fit space-y-3 space-x-2 pr-16">
                                     {`${form.passengers.length < 10 ? '0' : ''}${form.passengers.length + 1}`}.
                                     <br />
                                     <div className="justify-center text-center w-full">
@@ -407,16 +415,16 @@ const FlightDetail = () => {
                                 </Card>
                             </div>
 
-                            <Card withBorder radius="lg" className="w-full space-y-6">
-                                <CardSection className="flex justify-between items-center" p={16}>
-                                    <Text weight={500} size="xl" mt="md">Contact Details</Text>
-                                    <Button className="w-full lg:w-fit" color="gray" leftIcon={<EditIcon />}
-                                        radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} variant="outline">
+                            <Card withBorder radius="lg" className="w-full space-y-3 space-x-2">
+                                <CardSection className="flex justify-between items-center px-10" >
+                                    <Text weight={500}  className="text-2xl" mt="lg">Contact Details</Text>
+                                    <Button className="mt-auto lg:w-fit" color="gray" leftIcon={<EditIcon />}
+                                        radius={smallScreen ? 'xl' : 'sm'} variant="outline">
                                         Edit
                                     </Button>
                                 </CardSection>
 
-                                <CardSection p={16}>
+                                <CardSection px={16} py={4}>
                                     <div className="flex flex-wrap justify-between items-center">
                                         {form.personal_info.map((input, index) => (
                                             fillInput(input, index)
@@ -427,9 +435,9 @@ const FlightDetail = () => {
 
                         </div>
 
-                        <div className="lg:col-span-1 col-span-3">
+                        <div className="col-span-12 lg:col-span-4">
                             <Card withBorder radius="lg" p={0}>
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <Text weight={500} size="lg" mt="md">Price Details</Text>
 
                                     <div className="flex justify-between items-center">
@@ -457,7 +465,7 @@ const FlightDetail = () => {
 
                                 <Divider />
 
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <div className="flex">
                                         <Text weight={500} size="lg" mt="md">Passengers</Text>
                                     </div>
@@ -469,7 +477,7 @@ const FlightDetail = () => {
 
                                 <Divider />
 
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <div className="flex">
                                         <Text weight={500} size="lg" mt="md">Check-in baggage</Text>
                                     </div>
@@ -487,14 +495,14 @@ const FlightDetail = () => {
 
                                 <Divider />
 
-                                <CardSection p={16}>
+                                <CardSection className='mx-10 my-6'>
                                     <Text weight={500} size="lg" mt="md">Services</Text>
                                     <div className="flex justify-between items-center">
-                                        <Text weight={400} size="md" mt="md" color="gray">No extra services selected</Text>
+                                        <Text weight={400} size="md" my="md" color="gray">No extra services selected</Text>
                                     </div>
                                 </CardSection>
 
-                            </Card>
+                                </Card>
                         </div>
                     </div>
                     <div className="flex justify-start mt-5 lg:mt-24">

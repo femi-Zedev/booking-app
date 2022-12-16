@@ -30,13 +30,13 @@ export default function MainLayout() {
         return <div> Booking hotel  </div>
 
       case 'flight':
-        return <FlightForm />
+        return <FlightForm onFormSubmit={(arg) => console.log(arg)}/>
 
       case 'car':
         return <div>  Rent a car </div>
 
       default:
-        return <FlightForm />;
+        return <div> Booking hotel  </div>;
     }
   }
 

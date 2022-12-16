@@ -24,7 +24,7 @@ export default function CustomAutoComplete({placeholder, options, label, form, f
           height: '18px'
         },
       })}
-      {...form!.getInputProps(fieldName!)}
+      {...form?.getInputProps(fieldName!)}
       />
   )
 }

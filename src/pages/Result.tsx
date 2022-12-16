@@ -332,7 +332,7 @@ const Result = () => {
                 <Space h={150} />
             </div>
 
-            <div className="mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
+            <div className="mx-[5%] lg:mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
                 <div className="hidden lg:flex items-center ml-auto gap-x-4 pb-4">
                     <CustomSelect
                         options={['One-way', 'Round-trip', 'Round-trips']}
