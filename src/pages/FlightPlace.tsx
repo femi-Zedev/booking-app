@@ -3,32 +3,21 @@ import NavSection from '@/components/NavSection'
 import SubscribeSection from '@/components/SubscribeSection'
 import PassengerDropdown from '@/forms/components/PassengerDropdown';
 import FlightForm from '@/forms/FlightForm';
-import { Anchor, Breadcrumbs, Button, Card, CardSection, Container, Divider, Grid, Input, Select, Space, Text, Image } from '@mantine/core';
-import { IconChevronDown, IconChevronRight, IconEdit } from '@tabler/icons';
+import { Anchor, Breadcrumbs, Button, Card, CardSection, Container, Divider, Grid, Input, Select, Space, Text, Image, Avatar } from '@mantine/core';
+import { IconChevronDown, IconChevronRight } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
 import CustomSelect from '@/forms/components/CustomSelect';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Countries from '@/assets/countries.json';
+import { useLocation } from 'react-router-dom';
 import { useForm } from '@mantine/form';
-import EditIcon from '@/components/Icons/EditIcon';
 import PlusIcon from '@/components/Icons/PlusIcon';
 import { DatePicker } from '@mantine/dates';
 import FlightListItem from '@/components/FlightListItem';
 
 const FlightDetail = () => {
-    const navigate = useNavigate();
-    const { id } = useParams();
     const smallScreen = useMediaQuery('(min-width: 640px)');
     const [totalPassenger, setTotalPassenger] = useState(1);
     const previousRouteUrl = useLocation().state?.from || '/';
-    const [countries, setCountries] = useState<any>([]);
-    const [phones, setPhones] = useState<any>([]);
-    const miles = [
-        { label: '0', value: 0 },
-        { label: '10000', value: 10000 },
-        { label: '20000', value: 20000 },
-    ];
     const [flight, setFlight] = useState<any>([
         {
             id: 1,
@@ -78,161 +67,6 @@ const FlightDetail = () => {
         </Anchor>
     ));
 
-    const form = {
-        passengers: [
-            {
-                inputs: [
-                    {
-                        label: 'First name',
-                        name: 'firstname',
-                        type: 'text',
-                        placeholder: 'Enter passenger first name',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Last name',
-                        name: 'lastname',
-                        type: 'text',
-                        placeholder: 'Enter passenger last name',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Gender',
-                        name: 'gender',
-                        type: 'text',
-                        placeholder: 'Enter passenger gender',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Birth Day',
-                        name: 'birthday',
-                        type: 'date',
-                        minDate: new Date(),
-                        maxDate: '',
-                        placeholder: 'Enter passenger birth day',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Nationality',
-                        name: 'nationality',
-                        type: 'select',
-                        optionsList: countries,
-                        placeholder: 'Enter passenger nationality',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Passport Number',
-                        name: 'passportNumber',
-                        type: 'text',
-                        placeholder: 'Enter passenger passport number',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Date of expiration',
-                        name: 'expirationDate',
-                        type: 'date',
-                        minDate: new Date(),
-                        maxDate: '',
-                        placeholder: 'Enter passenger date of expiration',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Miles',
-                        name: 'miles',
-                        type: 'select',
-                        optionsList: miles,
-                        placeholder: 'Enter passenger miles',
-                        show: true,
-                        semiWidth: true,
-                    },
-                    {
-                        label: 'Miles registration number',
-                        name: 'milesRegistrationNumber',
-                        type: 'text',
-                        placeholder: 'Enter passenger miles registration number',
-                        show: true,
-                        semiWidth: true,
-                    }
-                ]
-            }
-        ],
-        personal_info: [
-            {
-                label: 'Enter an email',
-                name: 'email',
-                type: 'text',
-                placeholder: 'Your email',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Enter The Confirm Email ',
-                name: 'confirmEmail',
-                type: 'text',
-                placeholder: 'Retype your email',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Enter an address name',
-                name: 'address',
-                type: 'text',
-                placeholder: 'Your address',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Enter a city name',
-                name: 'city',
-                type: 'text',
-                placeholder: 'Your city',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Country',
-                name: 'country',
-                type: 'select',
-                optionsList: countries,
-                placeholder: 'Your country',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Enter password',
-                name: 'password',
-                type: 'password',
-                placeholder: 'Your password',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Country code',
-                name: 'countryCode',
-                type: 'select',
-                optionsList: phones,
-                placeholder: 'Your country code',
-                show: true,
-                semiWidth: true,
-            },
-            {
-                label: 'Enter a phone number',
-                name: 'phone',
-                type: 'text',
-                placeholder: 'Your phone',
-                show: true,
-                semiWidth: true,
-            }
-        ],
-    };
-
     const useform = useForm({
         initialValues: {},
         validate: {},
@@ -240,96 +74,6 @@ const FlightDetail = () => {
 
     const handleForm = (values: any) => {
         console.log("🚀 ~ file: FlightDetail.tsx:145 ~ handleForm ~ values", values)
-    };
-
-    const fillInput = (input: any, index: number) => {
-        switch (input.type) {
-            case 'text':
-            case 'password':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
-                    <Input.Wrapper
-                        key={index}
-                        className="flex w-full flex-col my-4 first:ml-0 ml-4"
-                        label={input.label}
-                        styles={(theme) => ({
-                            label: {
-                                fontWeight: 700,
-                                lineHeight: '21px',
-                                color: '#84878B',
-                                fontSize: '16px',
-                                marginBottom: '1rem'
-                            },
-                        })
-                        }
-                    >
-                        <Input
-                            name={input.name}
-                            type={input.type}
-                            placeholder={input.placeholder}
-                            size="sm"
-                        />
-                    </Input.Wrapper>
-                </div>;
-            case 'select':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
-                    <Select
-                        label={input.label}
-                        name={input.name}
-                        placeholder={input.placeholder}
-                        data={input.optionsList}
-                        size="sm"
-                        styles={(theme) => ({
-                            label: {
-                                fontWeight: 700,
-                                lineHeight: '21px',
-                                color: '#84878B',
-                                fontSize: '16px',
-                                marginBottom: '1rem'
-                            },
-                        })
-                        } />
-                </div>;
-            case 'date':
-                return <div className={`flex w-full flex-col my-4 first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
-                    <DatePicker
-                        label={input.label}
-                        aria-label={input.label}
-                        className='mt-1'
-                        name={input.name}
-                        placeholder={input.placeholder}
-                        minDate={input.minDate}
-                        maxDate={input.maxDate}
-                        styles={(theme) => ({
-                            label: {
-                                fontWeight: 700,
-                                lineHeight: '21px',
-                                color: '#84878B',
-                                fontSize: '16px',
-                                marginBottom: '1rem'
-                            },
-                        })
-                        }
-                    />
-                </div>;
-        };
-    };
-
-    useEffect(() => {
-        setCountries(Countries.map((country: any) => ({ label: country.name, value: country.code })));
-        setPhones(Countries.map((phone: any) => ({ label: phone.dial_code, value: phone.dial_code })));
-    }, []);
-
-    const renderRemainingHours = (departureDate: string, time: string) => {
-        const now = new Date();
-        const departureDateTime = new Date(`${departureDate} ${time}`);
-        const diff = departureDateTime.getTime() - now.getTime();
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        if (hours > 0 && minutes > 0) {
-            return `${hours}h ${minutes}m`;
-        } else if (minutes) {
-            return `${minutes}m`;
-        }
     };
 
     return (
@@ -370,63 +114,29 @@ const FlightDetail = () => {
                 <form onSubmit={useform.onSubmit((values) => handleForm(values))}>
                     <div className="grid grid-flow-row-dense grids-cols-1 lg:grids-rows-4 lg:grid-cols-4 gap-12">
                         <div className="col-span-3 space-y-16">
-                            <Card withBorder radius="lg" className="w-full space-y-6">
-                                {flight.map((flightData: any, index: number) => (
-                                    <FlightListItem data={flightData} changeFlight={index <= 0} />
-                                ))}
+                            <Text weight={700} size="lg" mt="md" className="text-blue-800">What bags are you taking on board?</Text>
+
+                            <CardSection className="flex">
+                                <div>
+                                    <Text weight={700} size="sm" mt="md" className="text-[#073590]">FROM</Text>
+                                    <Text weight={700} size="xl" mt="md" className="text-[#073590]">DAC</Text>
+                                </div>
+                                <div>
+                                    <Text weight={700} size="sm" mt="md" className="text-[#073590] text-opacity-50">TO</Text>
+                                    <Text weight={700} size="xl" mt="md" className="text-[#073590] text-opacity-50">DXB</Text>
+                                </div>
+                            </CardSection>
+
+                            <Card radius="sm" className="flex w-full space-x-2 items-center">
+                                <div>
+                                    <Avatar color="blue" radius="xl">ST</Avatar>
+                                    <Text size="md">Stark Tony</Text>
+                                </div>
+                                <div>
+                                    <Text size="md" className="text-[#073590] text-opacity-50">Cabin Bag</Text>
+                                    <Text size="md">Add additional baggage</Text>
+                                </div>
                             </Card>
-
-                            {form.passengers.map((passenger, index) => (
-                                <Card withBorder radius="lg" className="w-full space-y-6">
-                                    <CardSection className="flex justify-between items-center" p={16}>
-                                        <Text weight={500} size="xl" mt="md">Passenger Details</Text>
-                                    </CardSection>
-
-                                    <CardSection p={16}>
-                                        <div className="flex flex-wrap justify-between items-center">
-                                            {passenger.inputs.map((input, index) => (
-                                                fillInput(input, index)
-                                            ))}
-                                        </div>
-                                    </CardSection>
-                                </Card>
-                            ))}
-
-                            <div className="flex flex-wrap">
-                                {form.passengers.map((input, index) => (
-                                    <Card withBorder radius="lg" className="w-fit space-y-6 mr-4 px-8">
-                                        {`${index < 10 ? '0' : ''}${index + 1}`}.
-                                        <br />
-                                        Adulte
-                                    </Card>
-                                ))}
-                                <Card withBorder radius="lg" className="w-fit space-y-6 pr-16">
-                                    {`${form.passengers.length < 10 ? '0' : ''}${form.passengers.length + 1}`}.
-                                    <br />
-                                    <div className="justify-center text-center w-full">
-                                        <PlusIcon />
-                                    </div>
-                                </Card>
-                            </div>
-
-                            <Card withBorder radius="lg" className="w-full space-y-6">
-                                <CardSection className="flex justify-between items-center" p={16}>
-                                    <Text weight={500} size="xl" mt="md">Contact Details</Text>
-                                    <Button className="w-full lg:w-fit" color="gray" leftIcon={<EditIcon />}
-                                        radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} variant="outline">
-                                        Edit
-                                    </Button>
-                                </CardSection>
-
-                                <CardSection p={16}>
-                                    <div className="flex flex-wrap justify-between items-center">
-                                        {form.personal_info.map((input, index) => (
-                                            fillInput(input, index)
-                                        ))}
-                                    </div>
-                                </CardSection>
-                            </Card>
-
                         </div>
 
                         <div className="lg:col-span-1 col-span-3">
@@ -500,7 +210,7 @@ const FlightDetail = () => {
                         </div>
                     </div>
                     <div className="flex justify-start mt-5 lg:mt-24">
-                        <Button className="bg-blue-500 w-full lg:w-fit" color="blue" radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} onClick={() => navigate(`/flight-place/${id}`)}>
+                        <Button className="bg-blue-500 w-full lg:w-fit" color="blue" radius={smallScreen ? 'xl' : 'sm'} fullWidth={!smallScreen} >
                             Continue
                         </Button>
                     </div>
