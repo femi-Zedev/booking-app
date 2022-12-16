@@ -29,7 +29,7 @@ export default function NavSection({ withIconImage = true }: { withIconImage?: b
         <div className="flex items-center gap-x-2">
           {/* <span className="w-10 h-10 rounded-full bg-gray-500 border border-gray-50"></span> */}
           <img className="w-8 h-8 max-w-[32px] border border-gray-50" src="/assets/user.png" alt="" />
-          <p className="hidden lg:block text-sm font-medium text-gray-500">Delowar</p>
+          <p className="hidden lg:block text-sm font-medium text-gray-100">Delowar</p>
         </div>
       </nav>
     </header>

@@ -64,7 +64,6 @@ export default function MainLayout() {
                       options={['One-way', 'Round-trip', 'Round-trips']}
                       defaultValue="Round-trip"
                       style={{ input: { fontSize: '16px', fontWeight: 600, color: '#605858', width: '118px' } }} />
-
                     <PassengerDropdown
                       buttonComponent={
                         <span className='cursor-pointer flex items-center  gap-x-3'>
