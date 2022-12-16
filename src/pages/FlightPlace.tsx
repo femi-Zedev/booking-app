@@ -76,7 +76,7 @@ const FlightDetail = () => {
         console.log("🚀 ~ file: FlightDetail.tsx:145 ~ handleForm ~ values", values)
     };
 
-    function BagPicker({ selectedOption}: { selectedOption: string}) {
+    function BagPicker({ selectedOption }: { selectedOption: string }) {
         return (
             <div className="flex items-center justify-between my-5 bg-white py-4 px-4 shadow-lg shadow-gray-200 border border-stone-100 rounded">
                 <div className="flex items-center">
@@ -110,7 +110,7 @@ const FlightDetail = () => {
             </div>
 
             <div className="mx-[5%] lg:mx-auto bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px] -mt-20 max-w-7xl">
-                <div className="hidden lg:flex items-center ml-auto gap-x-4 pb-4">
+                <div className="hidden lg:flex items-center ml-auto gap-x-8 pb-4">
                     <CustomSelect
                         options={['One-way', 'Round-trip', 'Round-trips']}
                         defaultValue="Round-trip"
@@ -241,83 +241,13 @@ const FlightDetail = () => {
                                     </div>
                                 </CardSection>
 
-                                </Card>
-                        </div>
-                    </div>
-
-                    <div>
-                        <Text weight={700} size="xl" my="md" className="text-blue-800">Select your Favorite Sit</Text>
-
-                        <div className="grid grid-flow-row-dense grids-cols-1 lg:grids-rows-4 lg:grid-cols-4 gap-12">
-                            <Card p="0" className="col-span-4 2xl:col-span-3 relative">
-                                <div className="h-80 w-full rounded-br-[100px] bg-[#2D3DDF]" />
-                                <img src="/assets/curved-line.svg" alt="Plane" className="absolute top-0 -left-24 w-full object-cover position" />
-                                <div className="md:flex">
-                                    <div className="-mt-24 md:w-1/2 h-full relative module--seatpicker">
-                                        <div className="pt-[35rem] relative z-50 px-16 2xl:px-32 space-y-16">
-                                            <CustomSelect
-                                                options={['Business Class', 'Economic Class']}
-                                                defaultValue="Business Class"
-                                                style={{ input: { fontSize: '16px', fontWeight: 600, color: '#605858', border: 'none' } }}
-                                            />
-
-                                            <Grid gutter="xl" className="">
-                                                <Grid.Col span={6} className="flex">
-                                                    <Grid className="">
-                                                        {Array(10).fill(0).map((_: any, i: any) => (
-                                                            <Grid.Col span={6} className="flex">
-                                                                <Button color="gray" size="sm" className="bg-gray-500 mt-4 p-0 h-12 w-12" fullWidth radius="sm">
-                                                                    {i}
-                                                                </Button>
-                                                            </Grid.Col>
-                                                        ))}
-                                                    </Grid>
-                                                </Grid.Col>
-                                                <Grid.Col span={6} className="flex">
-                                                    <Grid className="">
-                                                        {Array(10).fill(0).map((_: any, i: any) => (
-                                                            <Grid.Col span={6} className="flex">
-                                                                <Button color="gray" size="sm" className="bg-gray-500 mt-4 p-0 h-12 w-12" fullWidth radius="sm">
-                                                                    {i}
-                                                                </Button>
-                                                            </Grid.Col>
-                                                        ))}
-                                                    </Grid>
-                                                </Grid.Col>
-                                            </Grid>
-
-                                            <Grid className="">
-                                                <Grid.Col md={6}>
-                                                    <Image src="/assets/plane-block.svg" alt="plane-block" />
-                                                </Grid.Col>
-                                                <Grid.Col className="hidden xl:block" md={6}>
-                                                    <Image src="/assets/plane-block.svg" alt="plane-block" />
-                                                </Grid.Col>
-                                            </Grid>
-                                        </div>
-                                        <img src="/assets/plane-with-pilot.svg" alt="Plane" className="absolute top-0 left-0 bottom-0 h-full w-full module--seatpicker-plane" />
-                                    </div>
-                                    <div className="md:w-1/2">
-                                        <div className="grid grid-cols-12 relative bottom-[-10vh]">
-                                            <div className="col-span-3"></div>
-                                            <div className="col-span-1">
-                                                <Text weight={400} size="xl" mt="md">DAC</Text>
-                                            </div>
-                                            <div className="-mt-5 col-span-3 text-center px-12 py-8">
-                                                <Image width={50} src="/assets/AtoB.svg" alt="plane-step" />
-                                                <Text weight={400} size="xl" mt="md">1D</Text>
-                                                <Text weight={400} size="lg" mt="md">Seat</Text>
-                                            </div>
-                                            <div className="pb-4 col-span-1 self-end">
-                                                <Text weight={400} size="xl" mt="md">Business</Text>
-                                                <Text weight={400} size="lg" mt="md">Class</Text>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </Card>
-                            <div className="col-span-1 relative">
-                                <img src='/assets/seats.png' className='hidden lg:block absolute -left-3/4' />
+                            <div className="flex items-center justify-between my-3 bg-white py-2 px-4 shadow-lg shadow-gray-200 border border-stone-100 rounded-lg">
+                                <p className="text-gray-400 text-lg font-semibold">Passenger 1</p>
+                                <div className="flex items-center">
+                                    <span className='flex items-center justify-center bg-[#073590] text-[#073590]  w-10 h-10 bg-opacity-30 rounded-full text-xl font-bold' >ST</span>
+                                    <p className='text-sm text-gray-700 font-semibold ml-3'>Stark Tony</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -327,8 +257,8 @@ const FlightDetail = () => {
 
                         <div className="grid grid-flow-row-dense grids-cols-1 lg:grids-rows-4 lg:grid-cols-4 gap-12">
                             <Card p="0" className="col-span-4 2xl:col-span-3 relative">
-                                <div className="h-80 w-full rounded-br-[100px] bg-[#2D3DDF]" />
-                                <img src="/assets/curved-line.svg" alt="Plane" className="absolute top-0 -left-24 w-full object-cover position" />
+                                <div className="h-60 w-full rounded-br-[100px] bg-[#2D3DDF]" />
+                                <img src="/assets/curved-line.svg" alt="Plane" className="absolute top-0 -left-4 w-full object-cover position" />
                                 <div className="md:flex">
                                     <div className="-mt-24 md:w-1/2 h-full relative module--seatpicker">
                                         <div className="pt-[35rem] relative z-50 px-16 2xl:px-32 space-y-16">
@@ -394,7 +324,7 @@ const FlightDetail = () => {
                                 </div>
                             </Card>
                             <div className="col-span-1 relative">
-                                <img src='/assets/seats.png' className='hidden lg:block absolute -left-3/4' />
+                                <img src='/assets/seats.png' className='hidden lg:block absolute  -left-3/4 w-full' />
                             </div>
                         </div>
                     </div>
