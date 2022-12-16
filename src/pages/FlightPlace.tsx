@@ -135,7 +135,7 @@ const FlightDetail = () => {
             <div className="px-[5%] lg:px-[9%] mt-24">
 
                 <form onSubmit={useform.onSubmit((values) => handleForm(values))}>
-                    <div className="grid grid-cols-12 gap-12">
+                    <div className="grid grid-cols-12 gap-3">
                         <div className="col-span-12 lg:col-span-8">
                             <Text weight={700} className="text-2xl text-blue-800" mt="md" >What bags are you taking on board?</Text>
 
@@ -266,7 +266,7 @@ const FlightDetail = () => {
                                                     <Grid className="">
                                                         {Array(10).fill(0).map((_: any, i: any) => (
                                                             <Grid.Col span={6} className="flex">
-                                                                <Button color="gray" size="sm" className="bg-gray-500 mt-4 p-0 h-24" fullWidth radius="sm">
+                                                                <Button color="gray" size="sm" className="bg-gray-500 mt-4 p-0 h-12 w-12" fullWidth radius="sm">
                                                                     {i}
                                                                 </Button>
                                                             </Grid.Col>
@@ -277,7 +277,7 @@ const FlightDetail = () => {
                                                     <Grid className="">
                                                         {Array(10).fill(0).map((_: any, i: any) => (
                                                             <Grid.Col span={6} className="flex">
-                                                                <Button color="gray" size="sm" className="bg-gray-500 mt-4 p-0 h-24" fullWidth radius="sm">
+                                                                <Button color="gray" size="sm" className="bg-gray-500 mt-4 p-0 h-12 w-12" fullWidth radius="sm">
                                                                     {i}
                                                                 </Button>
                                                             </Grid.Col>

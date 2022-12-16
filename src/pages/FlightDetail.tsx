@@ -246,10 +246,10 @@ const FlightDetail = () => {
         switch (input.type) {
             case 'text':
             case 'password':
-                return <div className={`flex w-full flex-col first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
+                return <div className={`flex flex-col lg:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Input.Wrapper
                         key={index}
-                        className="flex w-full flex-col my-4 first:ml-0 ml-4"
+                        className="flex w-full flex-col my-4 lg:ml-0 ml-4"
                         label={input.label}
                         styles={(theme) => ({
                             label: {
@@ -272,7 +272,7 @@ const FlightDetail = () => {
                     </Input.Wrapper>
                 </div>;
             case 'select':
-                return <div className={`flex w-full flex-col first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
+                return <div className={`flex w-full flex-col lg:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Select
                         size="md"
                         radius="md"
@@ -293,7 +293,7 @@ const FlightDetail = () => {
                         } />
                 </div>;
             case 'date':
-                return <div className={`flex w-full flex-col first:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
+                return <div className={`flex w-full flex-col lg:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <DatePicker
                         radius="md"
                         size='md'
@@ -376,16 +376,16 @@ const FlightDetail = () => {
             <div className="px-[5%] lg:px-[9%] mt-24">
 
                 <form onSubmit={useform.onSubmit((values) => handleForm(values))}>
-                    <div className="grid grid-cols-12 gap-12">
+                    <div className="grid grid-cols-12 gap-3">
                         <div className="col-span-12 lg:col-span-8 space-y-16">
-                            <Card withBorder radius="lg" className="w-full space-y-3 space-x-2">
+                            <Card withBorder radius="lg" className=" space-y-3 space-x-2">
                                 {flight.map((flightData: any, index: number) => (
                                     <FlightListItem data={flightData} changeFlight={index <= 0} />
                                 ))}
                             </Card>
 
                             {form.passengers.map((passenger, index) => (
-                                <Card withBorder radius="lg" className="w-full space-y-3 space-x-2">
+                                <Card withBorder radius="lg" className="space-y-3 space-x-2">
                                     <CardSection className="flex justify-between items-center">
                                         <Text weight={500} className="text-2xl ml-10" mt="lg" >Passenger Details</Text>
                                     </CardSection>
@@ -417,7 +417,7 @@ const FlightDetail = () => {
                                 </Card>
                             </div>
 
-                            <Card withBorder radius="lg" className="w-full space-y-3 space-x-2">
+                            <Card withBorder radius="lg" className=" space-y-3 space-x-2">
                                 <CardSection className="flex justify-between items-center px-10" >
                                     <Text weight={500}  className="text-2xl" mt="lg">Contact Details</Text>
                                     <Button className="mt-auto lg:w-fit" color="gray" leftIcon={<EditIcon />}
