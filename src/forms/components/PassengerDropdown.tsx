@@ -10,9 +10,7 @@ interface PassengerDropdownProps {
 
 export default function PassengerDropdown({ buttonComponent, items, onStateChange }: PassengerDropdownProps) {
 
-  const [itemCount, setItemCount] = useState(Array(items.length).fill(0))
-
-  console.log(items.length);
+  const [itemCount, setItemCount] = useState(Array(items.length).fill(0));
   
 
   function handleMinus(i: number) {

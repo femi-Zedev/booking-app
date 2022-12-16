@@ -1,13 +1,22 @@
 import { Autocomplete } from '@mantine/core'
-import React from 'react'
+import { UseFormReturnType } from '@mantine/form'
+import { LooseKeys } from '@mantine/form/lib/types'
 
-export default function CustomAutoComplete({placeholder, options, label}: { placeholder: string, options: [], label: string}) {
+interface CustomAutoCompleteProps  {
+  placeholder: string, 
+  options: string[], 
+  label: string, 
+  form?: UseFormReturnType<any>, 
+  fieldName?: LooseKeys<any>
+}
+
+export default function CustomAutoComplete({placeholder, options, label, form, fieldName}: CustomAutoCompleteProps) {
   return (
     <Autocomplete 
       variant="unstyled" 
       aria-label={label} 
       className='mt-1'
-      placeholder={placeholder} 
+      placeholder={placeholder}
       data={options} 
       styles={() => ({
         input: {
@@ -15,7 +24,7 @@ export default function CustomAutoComplete({placeholder, options, label}: { plac
           height: '18px'
         },
       })}
-      
+      {...form!.getInputProps(fieldName!)}
       />
   )
 }

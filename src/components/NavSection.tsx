@@ -8,7 +8,7 @@ import { IconBell } from '@tabler/icons';
 
 export default function NavSection({ withIconImage = true }: { withIconImage?: boolean }) {
   return (
-    <header className="flex items-center px-3 md:px-12 mx-auto py-5">
+    <header className="flex px-3 md:px-12 mx-auto py-5">
       {withIconImage &&
         <div className="w-full">
           <img className='ml-[15%] w-[250px] ' src='/assets/logo.png' />

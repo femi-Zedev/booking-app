@@ -12,7 +12,12 @@ import PassengerDropdown from './forms/components/PassengerDropdown';
 import Icon from './components/Icon';
 import CustomSelect from './forms/components/CustomSelect';
 
+
 export default function MainLayout() {
+  
+ 
+ 
+
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState<string | null>('flight');
@@ -36,7 +41,6 @@ export default function MainLayout() {
   }
 
   useEffect(() => {
-    console.log(location);
     const str = location.pathname.slice(1);
     str === 'hotel' || str === 'car' || str === 'flight' ? setActiveTab(str) : '';
   }, [location.pathname])
