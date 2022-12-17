@@ -53,7 +53,7 @@ export default function MainLayout() {
           <NavSection />
           <div className="grid grid-cols-12 relative bottom-[-10vh]">
             <div className="col-span-1"></div>
-            <div className="col-span-10 bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-12 py-8 min-h-[128px]  ">
+            <div className="col-span-10 bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-8 py-8 min-h-[128px]  ">
               <Tabs value={activeTab} onTabChange={(tab: string) => {setActiveTab(tab); navigate(tab)}} >
                 <Tabs.List className='w-[86%] border-b border-gray-200' >
                   <Tabs.Tab value='hotel' pb="lg" icon={<Icon icon='bed' color={activeTab === 'hotel' ? 'black' : 'gray'} height={16} />} px={0} mr="lg" > <p className={`font-bold text-xs ${activeTab === 'hotel' ? 'text-gray-800' : 'text-gray-500'}`}>Hotel</p> </Tabs.Tab>

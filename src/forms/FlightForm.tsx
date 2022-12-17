@@ -23,7 +23,7 @@ export default function FlightForm({ onFormSubmit }: { onFormSubmit?: (arg: any)
       tripType: 'Round-trip',
       leftFrom: '',
       goingTo: '',
-      departureDate: new Date(),
+      departureDate: null,
       returnDate: null,
     },
     validateInputOnChange: true,
