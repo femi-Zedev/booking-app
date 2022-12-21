@@ -2,11 +2,15 @@ import React from 'react';
 import { Indicator } from '@mantine/core';
 import { ActionIcon } from "@mantine/core";
 import { IconBell } from '@tabler/icons';
+import { useNavigate } from "react-router-dom";
 
 
 
 
-export default function NavSection({ withIconImage = true }: { withIconImage?: boolean }) {
+export default function NavSection({ withIconImage = true, onLightBackground = true }: { withIconImage?: boolean, onLightBackground?: boolean }) {
+  
+  const navigate = useNavigate();
+  
   return (
     <header className="flex px-3 md:px-12 mx-auto py-5">
       {withIconImage &&
@@ -26,10 +30,9 @@ export default function NavSection({ withIconImage = true }: { withIconImage?: b
         <Indicator className="mr-1" radius="md" size={16} label={3} offset={7} color="red" >
           <ActionIcon variant="transparent"><IconBell size={32} /></ActionIcon>
         </Indicator>
-        <div className="flex items-center gap-x-2">
-          {/* <span className="w-10 h-10 rounded-full bg-gray-500 border border-gray-50"></span> */}
+        <div className="flex items-center gap-x-2 cursor-pointer" onClick={() => navigate('/profile')}>
           <img className="w-8 h-8 max-w-[32px] border border-gray-50" src="/assets/user.png" alt="" />
-          <p className="hidden lg:block text-sm font-medium text-gray-100">Delowar</p>
+          <p className={`hidden lg:block text-sm font-medium ${onLightBackground ? 'text-gray-700' : 'text-gray-100'} `}   >Delowar</p>
         </div>
       </nav>
     </header>

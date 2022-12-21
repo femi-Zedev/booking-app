@@ -249,7 +249,7 @@ const FlightDetail = () => {
                 return <div className={`flex flex-col lg:pl-0 pr-4 ${input.semiWidth && 'md:w-1/2'}`}>
                     <Input.Wrapper
                         key={index}
-                        className="flex w-full flex-col my-4 lg:ml-0 ml-4"
+                        className="flex w-full flex-col my-4 lg:ml-0"
                         label={input.label}
                         styles={(theme) => ({
                             label: {

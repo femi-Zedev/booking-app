@@ -16,6 +16,8 @@ import Result from "./pages/Result";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import FlightDetail from "./pages/FlightDetail";
 import FlightPlace from "./pages/FlightPlace";
+import Profile from "./pages/Profile";
+import ProfileSetting from "./pages/profile-settings/ProfileSetting";
 
 export default function App() {
 
@@ -62,6 +64,14 @@ export default function App() {
     {
       path: "/flight-place/:id",
       element: <FlightPlace />,
+    },
+    {
+      path: "/profile",
+      element: <Profile/>,
+    },
+    {
+      path: "/profile-settings",
+      element: <ProfileSetting/>,
     },
   ]);
 

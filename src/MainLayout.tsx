@@ -50,7 +50,7 @@ export default function MainLayout() {
     <>
       <section className="w-full bg-no-repeat bg-cover" style={{ backgroundImage: `url("/assets/bg1.png")` }}>
         <div className=" bg-cover" style={{ backgroundImage: `url("/assets/bgBlur.png")` }}>
-          <NavSection />
+          <NavSection onLightBackground={false} />
           <div className="grid grid-cols-12 relative bottom-[-10vh]">
             <div className="col-span-1"></div>
             <div className="col-span-10 bg-white rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200 px-8 py-8 min-h-[128px]  ">
